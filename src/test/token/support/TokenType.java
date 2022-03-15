@@ -1,0 +1,59 @@
+package test.token.support;
+
+public enum TokenType {
+    //KEYWORDS
+    TRUE,
+    FALSE,
+    STARTPROGRAM,
+    ENDPROGRAM,
+    DEFINE,
+    IF,
+    THEN,
+    ELSE,
+    ENDIF,
+    WHILE,
+    DO,
+    ENDWHILE,
+    FOR,
+    ENDFOR,
+    TO,
+    BY,
+    RETURN,
+    BREAK,
+    SHOW,
+    OR,
+    AND,
+    NOT,
+
+    //KEY SYMBOLS
+    OBRACKET,
+    CBRACKET,
+    OCBRACE,
+    CCBRACE,
+    POINT,
+    COMMA,
+
+    //OPERATORS / TERMINAL NODES TOO
+    EQUAL,
+    RELATIONOPERATORS,
+    SUMOPERATOR,
+    MULTIPLYOPERATOR,
+    OTHEROPERATORS,
+    POWEROPERATOR,
+    SIMPLIFYOPERATORS,
+
+    //TERMINAL NODE - CANNOT APPEAR ON LEFT SIDE
+    INT,
+    FLOAT,
+    CHAR,
+    BOOL,
+    STRING,
+    VARIABLE,
+    DIGLET,
+    LETTERS,
+    DIGIT,
+    DATATYPE,
+
+    //RESERVED WORDS - NOT USED BUT JUST IN CASE
+    VOID,
+}

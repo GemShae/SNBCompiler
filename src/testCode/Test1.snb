@@ -1,0 +1,7 @@
+SNB
+def int a = 100
+def int b = 200
+show 10
+show a
+show b
+BNS
