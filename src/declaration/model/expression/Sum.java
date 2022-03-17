@@ -3,9 +3,9 @@ package declaration.model.expression;
 import declaration.Declaration;
 
 public class Sum extends Declaration {
-    Declaration left;
-    Declaration right;
-    String symbol;
+    public Declaration left;
+    public Declaration right;
+    public String symbol;
 
     public Sum(Declaration left, String symbol, Declaration right) {
         this.left = left;

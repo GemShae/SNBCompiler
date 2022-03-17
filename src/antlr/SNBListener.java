@@ -18,15 +18,65 @@ public interface SNBListener extends ParseTreeListener {
 	 */
 	void exitProgram(SNBParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SNBParser#variableDeclaration}.
+	 * Enter a parse tree produced by the {@code IntegerDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariableDeclaration(SNBParser.VariableDeclarationContext ctx);
+	void enterIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SNBParser#variableDeclaration}.
+	 * Exit a parse tree produced by the {@code IntegerDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariableDeclaration(SNBParser.VariableDeclarationContext ctx);
+	void exitIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FloatDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatDeclaration(SNBParser.FloatDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FloatDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatDeclaration(SNBParser.FloatDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code StringDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringDeclaration(SNBParser.StringDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code StringDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringDeclaration(SNBParser.StringDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CharacterDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterCharacterDeclaration(SNBParser.CharacterDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CharacterDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitCharacterDeclaration(SNBParser.CharacterDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BooleanDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BooleanDeclaration}
+	 * labeled alternative in {@link SNBParser#variableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SNBParser#statement}.
 	 * @param ctx the parse tree
@@ -48,36 +98,6 @@ public interface SNBListener extends ParseTreeListener {
 	 */
 	void exitExpressionStatement(SNBParser.ExpressionStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SNBParser#selectStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterSelectStatement(SNBParser.SelectStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#selectStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitSelectStatement(SNBParser.SelectStatementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#iterationStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterIterationStatement(SNBParser.IterationStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#iterationStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitIterationStatement(SNBParser.IterationStatementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#iterationRange}.
-	 * @param ctx the parse tree
-	 */
-	void enterIterationRange(SNBParser.IterationRangeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#iterationRange}.
-	 * @param ctx the parse tree
-	 */
-	void exitIterationRange(SNBParser.IterationRangeContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SNBParser#printStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -97,46 +117,6 @@ public interface SNBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(SNBParser.ExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#simpleExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimpleExpression(SNBParser.SimpleExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#simpleExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimpleExpression(SNBParser.SimpleExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#andExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterAndExpression(SNBParser.AndExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#andExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitAndExpression(SNBParser.AndExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#unaryRelationExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryRelationExpression(SNBParser.UnaryRelationExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#unaryRelationExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryRelationExpression(SNBParser.UnaryRelationExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#relationExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterRelationExpression(SNBParser.RelationExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#relationExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitRelationExpression(SNBParser.RelationExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SNBParser#sumExpression}.
 	 * @param ctx the parse tree

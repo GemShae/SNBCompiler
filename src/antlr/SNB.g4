@@ -22,7 +22,6 @@ CCBRACE: '}';
 POINT: '.';
 COMMA: ',';
 DOUBLEQUOTE: '"';
-DEFINE: 'def';
 EQUAL: '=';
 IF: 'if';
 THEN: 'then';
@@ -41,16 +40,24 @@ SHOW: 'show';
 OR: 'or';
 AND: 'and';
 NOT: 'not';
-DATATYPE: 'int' | 'float' | 'char' | 'string' | 'bool';
-SIMPLIFYOPERATORS: '+=' | '-=' | '*=' | '/=' | '++' | '--';
+INTDATATYPE: 'int';
+FLOATDATATYPE: 'float';
+CHARDATATYPE: 'char';
+STRINGDATATYPE: 'string';
+BOOLDATATYPE: 'bool';
+SIMPLIFYOPERATORS: '+=' | '-=' | '*=' | '/=';
+PLUSMINUSOPERATORS: '++' | '--';
 RELATIONOPERATORS: '<=' | '<' | '>' | '>=' | '==' | '!=';
-SUMOPERATORS: '+' | '-';
-MULTIPLYOPERATOR: '*' | '/' | '%';
+PLUS: '+';
+MINUS: '-';
+MULTIPLY: '*';
+DIVIDE: '/';
+MODULUS: '%';
 POWEROPERATOR: '^';
-NEGATIVE: '-';
+//NEGATIVE: '-';
 
-INT: NEGATIVE? DIGIT+;
-FLOAT: INT POINT DIGIT+ | POINT DIGIT+ | INT;
+INT: MINUS? DIGIT+;
+FLOAT: INT POINT DIGIT+ | POINT DIGIT+ | INT POINT '0';
 
 BOOL: TRUE | FALSE;
 STRING: DOUBLEQUOTE CHAR* DOUBLEQUOTE;
@@ -66,7 +73,12 @@ program: STARTPROGRAM (variableDeclaration | statement)+ ENDPROGRAM EOF; //Start
 //declarationList: declaration | declaration declarationList;
 //declaration: variableDeclaration | statement; //functionDeclaration |
 
-variableDeclaration: DEFINE DATATYPE VARIABLE EQUAL (INT | FLOAT | STRING | CHAR | BOOL);
+variableDeclaration: INTDATATYPE VARIABLE EQUAL INT # IntegerDeclaration
+    | FLOATDATATYPE VARIABLE EQUAL FLOAT #FloatDeclaration
+    | STRINGDATATYPE VARIABLE EQUAL STRING #StringDeclaration
+    | CHARDATATYPE VARIABLE EQUAL CHAR #CharacterDeclaration
+    | BOOLDATATYPE VARIABLE EQUAL BOOL #BooleanDeclaration
+    ;
 //variableDeclarationList: variableInitialization; //| variableInitialization COMMA variableDeclarationList;
 //variableInitialization: VARIABLE EQUAL (INT | FLOAT | STRING | CHAR | BOOL); //variableDeclarationName |
 //variableDeclarationName: VARIABLE;
@@ -81,8 +93,8 @@ parameterVariableList: parameterVariable | parameterVariable COMMA parameterVari
 parameterVariable: VARIABLE; */
 
 statement: expressionStatement
-    | selectStatement
-    | iterationStatement
+   // | selectStatement
+   // | iterationStatement
     | printStatement;
 //returnStatement | breakStatement | compoundStatement |
 
@@ -92,49 +104,53 @@ expressionStatement: expression;
 localDeclaration: variableDeclaration+;
 statementList: statement*; */
 
-selectStatement: IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE
-    | IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE ELSE OCBRACE statement CCBRACE ENDIF;
+/*selectStatement: IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE
+    | IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE ELSE OCBRACE statement CCBRACE ENDIF; */
 
-iterationStatement: WHILE OBRACKET simpleExpression CBRACKET DO OCBRACE statement CCBRACE ENDWHILE
+/*iterationStatement: WHILE OBRACKET simpleExpression CBRACKET DO OCBRACE statement CCBRACE ENDWHILE
     | FOR VARIABLE EQUAL iterationRange DO OCBRACE statement CCBRACE ENDFOR;
-iterationRange: simpleExpression TO simpleExpression;
+iterationRange: simpleExpression TO simpleExpression; */
 
 //returnStatement: RETURN | RETURN expression | RETURN VARIABLE;
 //breakStatement: BREAK;
 
-printStatement: SHOW mutable
-    | SHOW expression
-    | SHOW (mutable|expression) (COMMA (mutable|expression))+
-    ;
+printStatement: SHOW mutable (COMMA mutable)*;
+//    | SHOW expression
+//    | SHOW (mutable)
+//    ;
 
 expression: mutable EQUAL expression
-    | mutable SIMPLIFYOPERATORS expression
-    | mutable SIMPLIFYOPERATORS
-    | simpleExpression
-    ;
-
-simpleExpression: simpleExpression OR andExpression | andExpression;
-andExpression: andExpression AND unaryRelationExpression
-    | unaryRelationExpression
-    ;
-unaryRelationExpression: NOT unaryRelationExpression
-    | relationExpression
-    ;
-relationExpression: sumExpression RELATIONOPERATORS sumExpression
+//    | mutable SIMPLIFYOPERATORS expression
+//    | mutable PLUSMINUSOPERATORS | simpleExpression
     | sumExpression
     ;
+
+/*simpleExpression: simpleExpression OR andExpression
+    | andExpression
+    ; */
+/*andExpression: andExpression AND unaryRelationExpression
+    | unaryRelationExpression
+    ; */
+/* unaryRelationExpression: NOT unaryRelationExpression
+    | relationExpression
+    ; */
+/*relationExpression: sumExpression RELATIONOPERATORS sumExpression
+    | sumExpression
+    ; */
 
 //Symbols
 //relationOperator: '<=' | '<' | '>' | '>=' | '==' | '!=';
 
-sumExpression: sumExpression SUMOPERATORS multiplyExpression
+sumExpression: multiplyExpression PLUS sumExpression
+    | multiplyExpression MINUS sumExpression
     | multiplyExpression
     ;
 
 //Symbols
 //sumOperator: '+' | '-';
 
-multiplyExpression: multiplyExpression MULTIPLYOPERATOR unaryExpression
+multiplyExpression: unaryExpression MULTIPLY multiplyExpression
+    | unaryExpression DIVIDE multiplyExpression
     | unaryExpression
     ;
 
