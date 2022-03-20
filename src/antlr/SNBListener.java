@@ -54,18 +54,6 @@ public interface SNBListener extends ParseTreeListener {
 	 */
 	void exitStringDeclaration(SNBParser.StringDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code CharacterDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterCharacterDeclaration(SNBParser.CharacterDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code CharacterDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitCharacterDeclaration(SNBParser.CharacterDeclarationContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code BooleanDeclaration}
 	 * labeled alternative in {@link SNBParser#variableDeclaration}.
 	 * @param ctx the parse tree
@@ -88,16 +76,6 @@ public interface SNBListener extends ParseTreeListener {
 	 */
 	void exitStatement(SNBParser.StatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SNBParser#expressionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionStatement(SNBParser.ExpressionStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#expressionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionStatement(SNBParser.ExpressionStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SNBParser#printStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -108,125 +86,147 @@ public interface SNBListener extends ParseTreeListener {
 	 */
 	void exitPrintStatement(SNBParser.PrintStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SNBParser#expression}.
+	 * Enter a parse tree produced by the {@code Assignment}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpression(SNBParser.ExpressionContext ctx);
+	void enterAssignment(SNBParser.AssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SNBParser#expression}.
+	 * Exit a parse tree produced by the {@code Assignment}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpression(SNBParser.ExpressionContext ctx);
+	void exitAssignment(SNBParser.AssignmentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SNBParser#sumExpression}.
+	 * Enter a parse tree produced by the {@code BracketExpression}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterSumExpression(SNBParser.SumExpressionContext ctx);
+	void enterBracketExpression(SNBParser.BracketExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SNBParser#sumExpression}.
+	 * Exit a parse tree produced by the {@code BracketExpression}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitSumExpression(SNBParser.SumExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#multiplyExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterMultiplyExpression(SNBParser.MultiplyExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#multiplyExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitMultiplyExpression(SNBParser.MultiplyExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#unaryExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryExpression(SNBParser.UnaryExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#unaryExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryExpression(SNBParser.UnaryExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SNBParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void enterFactor(SNBParser.FactorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SNBParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void exitFactor(SNBParser.FactorContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Variable}
-	 * labeled alternative in {@link SNBParser#mutable}.
-	 * @param ctx the parse tree
-	 */
-	void enterVariable(SNBParser.VariableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Variable}
-	 * labeled alternative in {@link SNBParser#mutable}.
-	 * @param ctx the parse tree
-	 */
-	void exitVariable(SNBParser.VariableContext ctx);
+	void exitBracketExpression(SNBParser.BracketExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Integer}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
 	void enterInteger(SNBParser.IntegerContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Integer}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#/expressionStatement}.
 	 * @param ctx the parse tree
 	 */
 	void exitInteger(SNBParser.IntegerContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Float}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
 	void enterFloat(SNBParser.FloatContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code Float}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
 	void exitFloat(SNBParser.FloatContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Character}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * Enter a parse tree produced by the {@code Multiplication}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterCharacter(SNBParser.CharacterContext ctx);
+	void enterMultiplication(SNBParser.MultiplicationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Character}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * Exit a parse tree produced by the {@code Multiplication}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitCharacter(SNBParser.CharacterContext ctx);
+	void exitMultiplication(SNBParser.MultiplicationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Boolean}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * Enter a parse tree produced by the {@code Addition}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolean(SNBParser.BooleanContext ctx);
+	void enterAddition(SNBParser.AdditionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Boolean}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * Exit a parse tree produced by the {@code Addition}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolean(SNBParser.BooleanContext ctx);
+	void exitAddition(SNBParser.AdditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Variable}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(SNBParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Variable}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(SNBParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Subtraction}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubtraction(SNBParser.SubtractionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Subtraction}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubtraction(SNBParser.SubtractionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterDivision(SNBParser.DivisionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitDivision(SNBParser.DivisionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Exponential}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterExponential(SNBParser.ExponentialContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Exponential}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitExponential(SNBParser.ExponentialContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code String}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
 	void enterString(SNBParser.StringContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code String}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 */
 	void exitString(SNBParser.StringContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Boolean}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolean(SNBParser.BooleanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Boolean}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolean(SNBParser.BooleanContext ctx);
 }

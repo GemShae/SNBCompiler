@@ -1,8 +1,8 @@
-package declaration.model.mutable;
+package expression.model.mutable;
 
-import declaration.Declaration;
+import expression.Expression;
 
-public class IntegerNumber extends Declaration {
+public class IntegerNumber extends Expression {
     public int integer;
 
     public IntegerNumber(int integerNum) {

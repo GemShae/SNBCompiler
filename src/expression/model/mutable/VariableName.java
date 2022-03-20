@@ -1,8 +1,8 @@
-package declaration.model.variable;
+package expression.model.mutable;
 
-import declaration.Declaration;
+import expression.Expression;
 
-public class VariableName extends Declaration {
+public class VariableName extends Expression {
     public String variableName;
 
     public VariableName(String variableName) {

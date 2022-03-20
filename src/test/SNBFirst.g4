@@ -1,11 +1,16 @@
-antlr.grammar SNBFirst;
+grammar SNBFirst;
+
+/* @header {
+    package antlr;
+} */
+
 //Tokens
-WS: [ \n\t]+ -> skip;
-//LINE_COMMENT: '//' .*? '\n'-> skip; //Match "// stuff \n
+WS: [ \n\t\r]+ -> skip; //Should be ignored
+LINE_COMMENT: '--' ~[\r\n]* -> skip; //Should be ignored
 //COMMENT: '/*/ .*? */' -> skip; //Match /* stuff */ COME BACK TO THIS
 
-    //Keywords
-VOID: 'void';
+    //Keywords - Tokens
+//VOID: 'void';
 TRUE: 'true';
 FALSE: 'false';
 STARTPROGRAM: 'SNB';
@@ -16,52 +21,67 @@ OCBRACE: '{';
 CCBRACE: '}';
 POINT: '.';
 COMMA: ',';
-DEFINE: 'def';
+DOUBLEQUOTE: '"';
 EQUAL: '=';
-IF: 'if';
-THEN: 'then';
-ELSE: 'else';
-ENDIF: 'endif';
-WHILE: 'while';
-DO: 'do';
-ENDWHILE: 'endwhile';
-FOR: 'for';
-ENDFOR: 'endfor';
-TO: 'to';
-BY: 'by';
-RETURN: 'return';
-BREAK: 'break';
+//IF: 'if';
+//THEN: 'then';
+//ELSE: 'else';
+//ENDIF: 'endif';
+//WHILE: 'while';
+//DO: 'do';
+//ENDWHILE: 'endwhile';
+//FOR: 'for';
+//ENDFOR: 'endfor';
+//TO: 'to';
+//BY: 'by';
+//RETURN: 'return';
+//BREAK: 'break';
 SHOW: 'show';
-OR: 'or';
-AND: 'and';
-NOT: 'not';
-DATATYPE: 'int' | 'float' | 'char' | 'string' | 'bool';
-SIMPLIFYOPERATORS: '+=' | '-=' | '*=' | '/=' | '++' | '--';
-RELATIONOPERATORS: '<=' | '<' | '>' | '>=' | '==' | '!=';
-SUMOPERATORS: '+' | '-';
-MULTIPLYOPERATOR: '*' | '/' | '%';
+//OR: 'or';
+//AND: 'and';
+//NOT: 'not';
+INTDATATYPE: 'int';
+FLOATDATATYPE: 'float';
+CHARDATATYPE: 'char';
+STRINGDATATYPE: 'string';
+BOOLDATATYPE: 'bool';
+//SIMPLIFYOPERATORS: '+=' | '-=' | '*=' | '/=';
+//PLUSMINUSOPERATORS: '++' | '--';
+//RELATIONOPERATORS: '<=' | '<' | '>' | '>=' | '==' | '!=';
+PLUS: '+';
+MINUS: '-';
+MULTIPLY: '*';
+DIVIDE: '/';
+MODULUS: '%';
 POWEROPERATOR: '^';
+//NEGATIVE: '-';
 
-INT: DIGIT+;
-FLOAT: INT POINT DIGIT* | POINT DIGIT+ | INT;
-CHAR: [a-zA-Z];
+INT: MINUS? DIGIT+;
+FLOAT: INT POINT DIGIT+ | POINT DIGIT+ | INT POINT '0';
+
 BOOL: TRUE | FALSE;
-STRING: ('"' 'a'..'z'|'A'..'Z'|'0'..'9'|'_'|'@' '"')+ ;
-VARIABLE: LETTERS DIGLET*;
+STRING: DOUBLEQUOTE [ a-zA-Z0-9!@#$%&|?:;.,]* DOUBLEQUOTE;
+VARIABLE: [a-z][a-zA-Z0-9_]*; //Same as identifiers
+CHAR: [a-zA-Z];
 
-DIGLET: DIGIT | LETTERS;
-LETTERS: CHAR+;
 DIGIT: [0-9];
+//DIGLET: DIGIT | LETTERS;
+//LETTERS: CHAR+;
 
 //Rules
-program: STARTPROGRAM declarationList ENDPROGRAM;
-declarationList: declaration | declaration declarationList;
-declaration: variableDeclaration | statement; //functionDeclaration |
+program: STARTPROGRAM (variableDeclaration | statement)+ ENDPROGRAM EOF; //Start Rule
+//expressionList: expression | expression expressionList;
+//expression: variableDeclaration | statement; //functionDeclaration |
 
-variableDeclaration: DEFINE DATATYPE variableDeclarationList;
-variableDeclarationList: variableInitialization | variableInitialization COMMA variableDeclarationList;
-variableInitialization: variableDeclarationName | variableDeclarationName EQUAL simpleExpression;
-variableDeclarationName: VARIABLE;
+variableDeclaration: INTDATATYPE VARIABLE EQUAL INT #IntegerDeclaration
+    | FLOATDATATYPE VARIABLE EQUAL FLOAT #FloatDeclaration
+    | STRINGDATATYPE VARIABLE EQUAL STRING #StringDeclaration
+    | CHARDATATYPE VARIABLE EQUAL CHAR #CharacterDeclaration
+    | BOOLDATATYPE VARIABLE EQUAL BOOL #BooleanDeclaration
+    ;
+//variableDeclarationList: variableInitialization; //| variableInitialization COMMA variableDeclarationList;
+//variableInitialization: VARIABLE EQUAL (INT | FLOAT | STRING | CHAR | BOOL); //variableDeclarationName |
+//variableDeclarationName: VARIABLE;
 //dataType: 'int' | 'float' | 'char' | 'string' | 'bool';
 
 /* functionDeclaration: dataType VARIABLE OBRACKET parameter CBRACKET OCBRACE statement CCBRACE
@@ -72,49 +92,83 @@ parameterTypeList: dataType parameterVariableList;
 parameterVariableList: parameterVariable | parameterVariable COMMA parameterVariableList;
 parameterVariable: VARIABLE; */
 
-statement: expressionStatement | compoundStatement | selectStatement | iterationStatement | returnStatement |
-    breakStatement | printStatement;
+statement: expressionStatement
+   // | selectStatement
+   // | iterationStatement
+    | printStatement;
+//returnStatement | breakStatement | compoundStatement |
 
 expressionStatement: expression;
 
-compoundStatement: localDeclaration statementList;
-localDeclaration: variableDeclaration localDeclaration | WS;
-statementList: statement statementList | WS;
+/*compoundStatement: localDeclaration statementList;
+localDeclaration: variableDeclaration+;
+statementList: statement*; */
 
-selectStatement: IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE | IF OBRACKET simpleExpression
-    CBRACKET THEN OCBRACE statement CCBRACE ELSE OCBRACE statement CCBRACE ENDIF;
+/*selectStatement: IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE
+    | IF OBRACKET simpleExpression CBRACKET THEN OCBRACE statement CCBRACE ELSE OCBRACE statement CCBRACE ENDIF; */
 
-iterationStatement: WHILE OBRACKET simpleExpression CBRACKET DO OCBRACE statement CCBRACE ENDWHILE
+/*iterationStatement: WHILE OBRACKET simpleExpression CBRACKET DO OCBRACE statement CCBRACE ENDWHILE
     | FOR VARIABLE EQUAL iterationRange DO OCBRACE statement CCBRACE ENDFOR;
-iterationRange: simpleExpression TO simpleExpression;
+iterationRange: simpleExpression TO simpleExpression; */
 
-returnStatement: RETURN | RETURN expression | RETURN VARIABLE;
-breakStatement: BREAK;
+//returnStatement: RETURN | RETURN expression | RETURN VARIABLE;
+//breakStatement: BREAK;
 
-printStatement: SHOW mutable | SHOW expression;
+printStatement: SHOW mutable (COMMA mutable)*;
+//    | SHOW expression
+//    | SHOW (mutable)
+//    ;
 
-expression: mutable EQUAL expression | mutable SIMPLIFYOPERATORS expression | mutable SIMPLIFYOPERATORS | simpleExpression;
+expression: mutable EQUAL expression
+//    | mutable SIMPLIFYOPERATORS expression
+//    | mutable PLUSMINUSOPERATORS | simpleExpression
+    | sumExpression
+    ;
 
-simpleExpression: simpleExpression OR andExpression | andExpression;
-andExpression: andExpression AND unaryRelationExpression | unaryRelationExpression;
-unaryRelationExpression: NOT unaryRelationExpression | relationExpression;
-relationExpression: sumExpression RELATIONOPERATORS sumExpression | sumExpression;
+/*simpleExpression: simpleExpression OR andExpression
+    | andExpression
+    ; */
+/*andExpression: andExpression AND unaryRelationExpression
+    | unaryRelationExpression
+    ; */
+/* unaryRelationExpression: NOT unaryRelationExpression
+    | relationExpression
+    ; */
+/*relationExpression: sumExpression RELATIONOPERATORS sumExpression
+    | sumExpression
+    ; */
 
 //Symbols
 //relationOperator: '<=' | '<' | '>' | '>=' | '==' | '!=';
 
-sumExpression: sumExpression SUMOPERATORS multiplyExpression | multiplyExpression;
+sumExpression: multiplyExpression PLUS sumExpression
+    | multiplyExpression MINUS sumExpression
+    | multiplyExpression
+    ;
 
 //Symbols
 //sumOperator: '+' | '-';
 
-multiplyExpression: multiplyExpression MULTIPLYOPERATOR unaryExpression | unaryExpression;
+multiplyExpression: unaryExpression MULTIPLY multiplyExpression
+    | unaryExpression DIVIDE multiplyExpression
+    | unaryExpression
+    ;
 
 //Symbols
 //multiplyOperator: '*' | '/' | '%';
 
-unaryExpression: OBRACKET sumExpression CBRACKET | factor;
+unaryExpression: OBRACKET sumExpression CBRACKET
+    | factor
+    ;
 
-factor: mutable | mutable POWEROPERATOR INT | mutable POWEROPERATOR FLOAT;
+factor: mutable
+    | mutable POWEROPERATOR (INT|FLOAT)
+    ;
 
-mutable: VARIABLE | INT | FLOAT | CHAR | BOOL | STRING;
+mutable: VARIABLE # Variable
+    | INT # Integer
+    | FLOAT # Float
+    | CHAR # Character
+    | BOOL # Boolean
+    | STRING # String
+    ;

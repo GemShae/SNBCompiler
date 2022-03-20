@@ -1,5 +1,5 @@
 SNB
-def int i = 5
-def int j = 7
+int i = 5
+int j = 7
 i + j * 3
 BNS

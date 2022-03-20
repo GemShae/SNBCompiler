@@ -38,13 +38,6 @@ public interface SNBVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringDeclaration(SNBParser.StringDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code CharacterDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCharacterDeclaration(SNBParser.CharacterDeclarationContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code BooleanDeclaration}
 	 * labeled alternative in {@link SNBParser#variableDeclaration}.
 	 * @param ctx the parse tree
@@ -58,87 +51,93 @@ public interface SNBVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatement(SNBParser.StatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SNBParser#expressionStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionStatement(SNBParser.ExpressionStatementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SNBParser#printStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPrintStatement(SNBParser.PrintStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SNBParser#expression}.
+	 * Visit a parse tree produced by the {@code Assignment}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(SNBParser.ExpressionContext ctx);
+	T visitAssignment(SNBParser.AssignmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SNBParser#sumExpression}.
+	 * Visit a parse tree produced by the {@code BracketExpression}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSumExpression(SNBParser.SumExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SNBParser#multiplyExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMultiplyExpression(SNBParser.MultiplyExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SNBParser#unaryExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUnaryExpression(SNBParser.UnaryExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SNBParser#factor}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFactor(SNBParser.FactorContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Variable}
-	 * labeled alternative in {@link SNBParser#mutable}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVariable(SNBParser.VariableContext ctx);
+	T visitBracketExpression(SNBParser.BracketExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Integer}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitInteger(SNBParser.IntegerContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Float}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFloat(SNBParser.FloatContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Character}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * Visit a parse tree produced by the {@code Multiplication}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCharacter(SNBParser.CharacterContext ctx);
+	T visitMultiplication(SNBParser.MultiplicationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Boolean}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * Visit a parse tree produced by the {@code Addition}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBoolean(SNBParser.BooleanContext ctx);
+	T visitAddition(SNBParser.AdditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Variable}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(SNBParser.VariableContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Subtraction}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubtraction(SNBParser.SubtractionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDivision(SNBParser.DivisionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Exponential}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExponential(SNBParser.ExponentialContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code String}
-	 * labeled alternative in {@link SNBParser#mutable}.
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitString(SNBParser.StringContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Boolean}
+	 * labeled alternative in {@link SNBParser#//expressionStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolean(SNBParser.BooleanContext ctx);
 }

@@ -1,7 +1,7 @@
 SNB
-def float base = 3.0
-def float height = 14.5
-def float area = 0.5*base*height
-def string message = "area is "
+float base = 3.0
+float height = 14.5
+float area = 0.5*base*height
+string message = "area is "
 show message, area
 BNS

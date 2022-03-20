@@ -1,7 +1,8 @@
-package declaration;
+package expression;
 
 import antlr.SNBBaseVisitor;
 import antlr.SNBParser;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class AntlrToProgram extends SNBBaseVisitor<Program> {
         Program program = new Program();
 
         semanticErrors = new ArrayList<>();
-        AntlrToDeclaration declarationVisitor = new AntlrToDeclaration(semanticErrors); //A helper visitor for transforming each subtree into a Declaration
+        AntlrToExpression expressionVisitor = new AntlrToExpression(semanticErrors); //A helper visitor for transforming each subtree into a Expression
         //Object
 
         for (int index=1; index<ctx.getChildCount(); index++) {
@@ -28,7 +29,7 @@ public class AntlrToProgram extends SNBBaseVisitor<Program> {
                 //Do not visit this child and attempt to convert to a Declaration object
                 System.out.println("Found BNS");
             }else {
-                program.addDeclration(declarationVisitor.visit(ctx.getChild(index)));
+                program.addExpression(expressionVisitor.visit(ctx.getChild(index)));
             }
         }
 

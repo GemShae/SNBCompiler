@@ -2,8 +2,8 @@ package domain;
 
 import antlr.SNBLexer;
 import antlr.SNBParser;
-import declaration.AntlrToProgram;
-import declaration.Program;
+import expression.AntlrToProgram;
+import expression.Program;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
