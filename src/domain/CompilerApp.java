@@ -5,6 +5,7 @@ import antlr.SNBParser;
 import expression.AntlrToProgram;
 import expression.ExpressionProcessor;
 import expression.Program;
+import expression.error.ErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -24,19 +25,25 @@ public class CompilerApp {
             //Parse from the start symbol - 'program'
             ParseTree antlrAST = snbParser.program();
 
-            //Create a visitor for converting the parse tree into Program/Declaration Objects
-            AntlrToProgram programVisitor = new AntlrToProgram();
-            Program program = programVisitor.visit(antlrAST);
-
-            if (programVisitor.semanticErrors.isEmpty()) {
-                ExpressionProcessor expressionProcessor = new ExpressionProcessor(program.expressions);
-                for (String evaluation : expressionProcessor.getEvaluationResults()) {
-                    System.out.println(evaluation);
-                }
+            if (ErrorListener.hasError) {
+                //Let the Syntax error be reported
+                System.out.println("Syntax error found.");
             }
             else {
-                for (String error : programVisitor.semanticErrors) {
-                    System.out.println(error);
+                //Create a visitor for converting the parse tree into Program/Declaration Objects
+                AntlrToProgram programVisitor = new AntlrToProgram();
+                Program program = programVisitor.visit(antlrAST);
+
+                if (programVisitor.semanticErrors.isEmpty()) {
+                    ExpressionProcessor expressionProcessor = new ExpressionProcessor(program.expressions);
+                    for (String evaluation : expressionProcessor.getEvaluationResults()) {
+                        System.out.println(evaluation);
+                    }
+                }
+                else {
+                    for (String error : programVisitor.semanticErrors) {
+                        System.out.println(error);
+                    }
                 }
             }
         }
@@ -50,6 +57,10 @@ public class CompilerApp {
             SNBLexer snbLexer = new SNBLexer(input); //takes the source input and runs it into the lexical analyzer
             CommonTokenStream tokenStream = new CommonTokenStream(snbLexer); //produces tokens or lexical units
             snbParser = new SNBParser(tokenStream); //inputs tokens into parser of syntax analyzer which will produce a tree
+
+            //Syntax Error Handling
+            snbParser.removeErrorListeners();
+            snbParser.addErrorListener(new ErrorListener());
         } catch (IOException e) {
             e.printStackTrace();
         }
