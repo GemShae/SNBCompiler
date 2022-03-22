@@ -10,4 +10,9 @@ public class Assignment extends Expression {
         this.variableName = variableName;
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return variableName + "=" + value.toString();
+    }
 }

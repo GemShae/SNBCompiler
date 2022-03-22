@@ -17,13 +17,6 @@ public interface SNBVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(SNBParser.ProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IntegerDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code FloatDeclaration}
 	 * labeled alternative in {@link SNBParser#variableDeclaration}.
 	 * @param ctx the parse tree
@@ -37,13 +30,6 @@ public interface SNBVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStringDeclaration(SNBParser.StringDeclarationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code BooleanDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SNBParser#statement}.
 	 * @param ctx the parse tree
@@ -70,13 +56,6 @@ public interface SNBVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBracketExpression(SNBParser.BracketExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Integer}
-	 * labeled alternative in {@link SNBParser#//expressionStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInteger(SNBParser.IntegerContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Float}
 	 * labeled alternative in {@link SNBParser#//expressionStatement}.
@@ -133,11 +112,4 @@ public interface SNBVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitString(SNBParser.StringContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Boolean}
-	 * labeled alternative in {@link SNBParser#//expressionStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBoolean(SNBParser.BooleanContext ctx);
 }

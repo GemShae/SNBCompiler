@@ -15,15 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 public class AntlrToExpression extends SNBBaseVisitor<Expression> {
-    private Map<String, String> variables; //Stores all variables declared in program so far. Variable name, datatype
-    private List<String> semanticErrors; //Duplicate declaration or reference to undeclared declaration
+    private final Map<String, String> variables; //Stores all variables declared in program so far. Variable name, datatype
+    private final List<String> semanticErrors; //Duplicate declaration or reference to undeclared declaration
 
     public AntlrToExpression(List<String> semanticErrors) {
         this.semanticErrors = semanticErrors;
         variables = new HashMap<>();
     }
 
-    @Override
+/*    @Override
     public Expression visitIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx) {
         String dataType = ctx.INTDATATYPE().getText();
 
@@ -45,7 +45,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         int value = Integer.parseInt(ctx.INT().getText());
 
         return new IntegerVariableDeclaration(dataType,integerVariable,value);
-    }
+    } */
 
     @Override
     public Expression visitFloatDeclaration(SNBParser.FloatDeclarationContext ctx) {
@@ -57,7 +57,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         String floatVariable = ctx.VARIABLE().getText();
 
         if (variables.containsKey(floatVariable)) {
-            semanticErrors.add("Error: Variable " + floatVariable + "already declared (" + lineNumber + ", " +
+            semanticErrors.add("Error: Variable " + floatVariable + " already declared (" + lineNumber + ", " +
                     columnNumber + ")");
         }else {
             variables.put(floatVariable,"float");
@@ -78,7 +78,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         String stringVariable = ctx.VARIABLE().getText();
 
         if (variables.containsKey(stringVariable)) {
-            semanticErrors.add("Error: Variable " + stringVariable + "already declared (" + lineNumber + ", " +
+            semanticErrors.add("Error: Variable " + stringVariable + " already declared (" + lineNumber + ", " +
                     columnNumber + ")");
         }else {
             variables.put(stringVariable,"string");
@@ -111,7 +111,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
     } */
 
 
-    @Override
+/*    @Override
     public Expression visitBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx) {
         String dataType = ctx.BOOLDATATYPE().getText();
 
@@ -130,7 +130,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         boolean value = Boolean.parseBoolean(ctx.BOOL().getText());
 
         return new BooleanVariableDeclaration(dataType,booleanVariable,value);
-    }
+    } */
 
     @Override
     public Expression visitStatement(SNBParser.StatementContext ctx) {
@@ -144,7 +144,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
         for (int index=1; index<ctx.getChildCount(); index++) {
             String tokenName = ctx.getChild(index).getText();
-            if (tokenName.equalsIgnoreCase(ctx.COMMA().toString())) {
+            if (tokenName.equals(ctx.COMMA().toString())) {
                 System.out.println("Comma found in print statement");
             }else {
                 toPrint.add(visit(ctx.getChild(index)));
@@ -181,7 +181,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
         //Maintaining the variable list for semantic error reporting
         if (!variables.containsKey(variable)) {
-            semanticErrors.add("Error: Variable " + variable + "not declared (" + lineNumber + ", " +
+            semanticErrors.add("Error: Variable " + variable + " not declared (" + lineNumber + ", " +
                     columnNumber + ")");
         }
 
@@ -192,7 +192,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
     public Expression visitExponential(SNBParser.ExponentialContext ctx) {
         Expression leftChild = visit(ctx.getChild(0));
 
-        float power = Float.parseFloat(ctx.FLOAT().getText());
+        Double power = Double.parseDouble(ctx.FLOAT().getText());
 
         return new Exponential(leftChild,power);
     }
@@ -213,7 +213,7 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
         //Maintaining the variable list for semantic error reporting
         if (!variables.containsKey(variable)) {
-            semanticErrors.add("Error: Variable " + variable + "not declared (" + lineNumber + ", " +
+            semanticErrors.add("Error: Variable " + variable + " not declared (" + lineNumber + ", " +
                     columnNumber + ")");
         }
 
@@ -229,12 +229,12 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         return new Bracket(middle);
     }
 
-    @Override
+/*    @Override
     public Expression visitInteger(SNBParser.IntegerContext ctx) {
         String integerText = ctx.INT().getText();
         int integerNumber = Integer.parseInt(integerText);
         return new IntegerNumber(integerNumber);
-    }
+    } */
 
     @Override
     public Expression visitFloat(SNBParser.FloatContext ctx) {
@@ -257,8 +257,8 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         return new Division(leftChild,rightChild);
     }
 
-    @Override
+/*    @Override
     public Expression visitBoolean(SNBParser.BooleanContext ctx) {
         return new BooleanBool(Boolean.getBoolean(ctx.BOOL().getText()));
-    }
+    } */
 }

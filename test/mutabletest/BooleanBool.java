@@ -1,4 +1,4 @@
-package expression.model.mutable;
+package test.mutable;
 
 import expression.Expression;
 

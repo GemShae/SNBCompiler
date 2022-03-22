@@ -28,18 +28,6 @@ public class SNBBaseListener implements SNBListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFloatDeclaration(SNBParser.FloatDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,18 +47,6 @@ public class SNBBaseListener implements SNBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStringDeclaration(SNBParser.StringDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -119,18 +95,6 @@ public class SNBBaseListener implements SNBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBracketExpression(SNBParser.BracketExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInteger(SNBParser.IntegerContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInteger(SNBParser.IntegerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -227,18 +191,6 @@ public class SNBBaseListener implements SNBListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitString(SNBParser.StringContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBoolean(SNBParser.BooleanContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBoolean(SNBParser.BooleanContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,7 +1,8 @@
 SNB
 float base = 3.0
 float height = 14.5
-float area = 0.5*base*height
+float area = 0.0
+area = (0.5*base*height)
 string message = "area is "
 show message, area
 BNS

@@ -4,16 +4,16 @@ grammar SNB;
 WS: [ \n\t\r]+ -> skip; //Should be ignored
 LINE_COMMENT: '--' ~[\r\n]* -> skip; //Should be ignored
 
-TRUE: 'true';
-FALSE: 'false';
+//TRUE: 'true';
+//FALSE: 'false';
 STARTPROGRAM: 'SNB';
 ENDPROGRAM: 'BNS';
 SHOW: 'show';
-INTDATATYPE: 'int';
+//INTDATATYPE: 'int';
 FLOATDATATYPE: 'float';
-CHARDATATYPE: 'char';
+//CHARDATATYPE: 'char';
 STRINGDATATYPE: 'string';
-BOOLDATATYPE: 'bool';
+//BOOLDATATYPE: 'bool';
 
 OBRACKET: '(';
 CBRACKET: ')';
@@ -32,7 +32,7 @@ POWEROPERATOR: '^';
 
 INT: MINUS? DIGIT+;
 FLOAT: INT POINT DIGIT+ | POINT DIGIT+ | INT POINT '0';
-BOOL: TRUE | FALSE;
+//BOOL: TRUE | FALSE;
 STRING: DOUBLEQUOTE [ a-zA-Z0-9!@#$%&|?:;.,]* DOUBLEQUOTE;
 VARIABLE: [a-z][a-zA-Z0-9_]*; //Same as identifiers
 //CHAR: [a-zA-Z];
@@ -42,11 +42,11 @@ DIGIT: [0-9];
 //Rules
 program: STARTPROGRAM (variableDeclaration | statement)+ ENDPROGRAM EOF; //Start Rule
 
-variableDeclaration: INTDATATYPE VARIABLE EQUAL INT #IntegerDeclaration
-    | FLOATDATATYPE VARIABLE EQUAL FLOAT #FloatDeclaration
+variableDeclaration: //INTDATATYPE VARIABLE EQUAL INT #IntegerDeclaration
+      FLOATDATATYPE VARIABLE EQUAL FLOAT #FloatDeclaration
     | STRINGDATATYPE VARIABLE EQUAL STRING #StringDeclaration
 //    | CHARDATATYPE VARIABLE EQUAL CHAR #CharacterDeclaration
-    | BOOLDATATYPE VARIABLE EQUAL BOOL #BooleanDeclaration
+//    | BOOLDATATYPE VARIABLE EQUAL BOOL #BooleanDeclaration
     ;
 
 statement: expressionStatement
@@ -63,9 +63,9 @@ expressionStatement: VARIABLE EQUAL OBRACKET expressionStatement CBRACKET    #As
     | expressionStatement PLUS expressionStatement          #Addition
     | expressionStatement MINUS expressionStatement         #Subtraction
     | VARIABLE                                              #Variable
-    | INT                                                   #Integer
+//    | INT                                                   #Integer
     | FLOAT                                                 #Float
 //    | CHAR                                                  #Character
-    | BOOL                                                  #Boolean
+//    | BOOL                                                  #Boolean
     | STRING                                                #String
     ;

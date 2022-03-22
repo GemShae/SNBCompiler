@@ -1,0 +1,7 @@
+SNB
+float radius = 7.88
+float Pi = 0.0
+pi = 22.0/7.0
+string message = "pi is "
+show message, pi
+BNS

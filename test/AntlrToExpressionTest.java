@@ -6,7 +6,7 @@ import expression.Expression;
 import expression.model.mutable.IntegerNumber;
 import expression.model.expression.Multiplication;
 import expression.model.expression.Addition;
-import expression.model.variable.IntegerVariableDeclaration;
+import NotUsing.IntegerVariableDeclaration;
 import expression.model.mutable.VariableName;
 import org.antlr.v4.runtime.Token;
 

@@ -12,4 +12,9 @@ public class Print extends Expression {
         this.command = command;
         this.thingsToPrint = thingsToPrint;
     }
+
+    @Override
+    public String toString() {
+        return command + " " + thingsToPrint.toString();
+    }
 }

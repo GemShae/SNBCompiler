@@ -24,13 +24,6 @@ public class SNBBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SN
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitFloatDeclaration(SNBParser.FloatDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -39,13 +32,6 @@ public class SNBBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SN
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitStringDeclaration(SNBParser.StringDeclarationContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -74,13 +60,6 @@ public class SNBBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SN
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitBracketExpression(SNBParser.BracketExpressionContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitInteger(SNBParser.IntegerContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -137,11 +116,4 @@ public class SNBBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SN
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitString(SNBParser.StringContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitBoolean(SNBParser.BooleanContext ctx) { return visitChildren(ctx); }
 }

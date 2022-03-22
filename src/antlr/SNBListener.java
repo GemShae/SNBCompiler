@@ -18,18 +18,6 @@ public interface SNBListener extends ParseTreeListener {
 	 */
 	void exitProgram(SNBParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IntegerDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code IntegerDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitIntegerDeclaration(SNBParser.IntegerDeclarationContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code FloatDeclaration}
 	 * labeled alternative in {@link SNBParser#variableDeclaration}.
 	 * @param ctx the parse tree
@@ -53,18 +41,6 @@ public interface SNBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringDeclaration(SNBParser.StringDeclarationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BooleanDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BooleanDeclaration}
-	 * labeled alternative in {@link SNBParser#variableDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanDeclaration(SNBParser.BooleanDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SNBParser#statement}.
 	 * @param ctx the parse tree
@@ -109,18 +85,6 @@ public interface SNBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBracketExpression(SNBParser.BracketExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Integer}
-	 * labeled alternative in {@link SNBParser#//expressionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterInteger(SNBParser.IntegerContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Integer}
-	 * labeled alternative in {@link SNBParser#/expressionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitInteger(SNBParser.IntegerContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Float}
 	 * labeled alternative in {@link SNBParser#//expressionStatement}.
@@ -217,16 +181,4 @@ public interface SNBListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitString(SNBParser.StringContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Boolean}
-	 * labeled alternative in {@link SNBParser#//expressionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterBoolean(SNBParser.BooleanContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Boolean}
-	 * labeled alternative in {@link SNBParser#//expressionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitBoolean(SNBParser.BooleanContext ctx);
 }

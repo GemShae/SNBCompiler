@@ -1,8 +1,8 @@
-package expression.model.mutable;
+/*package expression.model.mutable;
 
 import expression.Expression;
 
-public class IntegerNumber extends Expression {
+public class FloatNumber extends Expression {
     public int integer;
 
     public IntegerNumber(int integerNum) {
@@ -14,3 +14,4 @@ public class IntegerNumber extends Expression {
         return new IntegerNumber(integer).toString();
     }
 }
+*/

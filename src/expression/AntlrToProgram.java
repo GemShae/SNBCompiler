@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AntlrToProgram extends SNBBaseVisitor<Program> {
-    private List<String> semanticErrors; //to be accessed by main application program
+    public List<String> semanticErrors; //to be accessed by main application program
 
 
     @Override

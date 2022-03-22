@@ -3,6 +3,7 @@ package domain;
 import antlr.SNBLexer;
 import antlr.SNBParser;
 import expression.AntlrToProgram;
+import expression.ExpressionProcessor;
 import expression.Program;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class CompilerApp {
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.out.println("Usage: filename");
+            System.out.println("Usage: filename \n");
         }else {
             String filename = args[0];
             SNBParser snbParser = getParser(filename);
@@ -26,6 +27,18 @@ public class CompilerApp {
             //Create a visitor for converting the parse tree into Program/Declaration Objects
             AntlrToProgram programVisitor = new AntlrToProgram();
             Program program = programVisitor.visit(antlrAST);
+
+            if (programVisitor.semanticErrors.isEmpty()) {
+                ExpressionProcessor expressionProcessor = new ExpressionProcessor(program.expressions);
+                for (String evaluation : expressionProcessor.getEvaluationResults()) {
+                    System.out.println(evaluation);
+                }
+            }
+            else {
+                for (String error : programVisitor.semanticErrors) {
+                    System.out.println(error);
+                }
+            }
         }
     }
 
