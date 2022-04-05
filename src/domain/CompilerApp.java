@@ -5,7 +5,7 @@ import antlr.SNBParser;
 import expression.AntlrToProgram;
 import expression.ExpressionProcessor;
 import expression.Program;
-import expression.error.ErrorListener;
+import expression.error.SyntaxErrorListener;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -25,7 +25,7 @@ public class CompilerApp {
             //Parse from the start symbol - 'program'
             ParseTree antlrAST = snbParser.program();
 
-            if (ErrorListener.hasError) {
+            if (SyntaxErrorListener.hasError) {
                 //Let the Syntax error be reported
                 System.out.println("Syntax error found.");
             }
@@ -60,7 +60,7 @@ public class CompilerApp {
 
             //Syntax Error Handling
             snbParser.removeErrorListeners();
-            snbParser.addErrorListener(new ErrorListener());
+            snbParser.addErrorListener(new SyntaxErrorListener());
         } catch (IOException e) {
             e.printStackTrace();
         }

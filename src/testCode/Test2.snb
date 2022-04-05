@@ -1,5 +1,7 @@
 SNB
-int i = 5
-int j = 7
-i + j * 3
+float i = 5.0
+float j = 7.0
+float m = 0.0
+m = (i + j * 3.0)
+show "Result is", m
 BNS

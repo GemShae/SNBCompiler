@@ -89,12 +89,19 @@ public class ExpressionProcessor {
             result = String.valueOf(floatNumber.floatNumber);
         }
         else if (expression instanceof StringMutable stringMutable) {
-            result = stringMutable.aString;
+            String tempString = stringMutable.aString;
+            //System.out.println(newString);
+            result = tempString.substring(1,tempString.length()-1);
         }
         else if (expression instanceof VariableName variableName) {
             //result = variableSymbols.get(variableName.variableName);
             for (SymbolTable symbolTableVariable : variableSymbols) {
                 if (symbolTableVariable.variableNames.equals(variableName.variableName)) {
+                    if (symbolTableVariable.dataType.equals("string")) {
+                        String tempString = symbolTableVariable.values;
+                        result = tempString.substring(1,tempString.length()-1);
+                        break;
+                    }
                     result = symbolTableVariable.values;
                     break;
                 }

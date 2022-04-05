@@ -1,7 +1,8 @@
 SNB
-int a = 100
-int b = 200
-show 10
+float a = 100.0
+float b = 200.0
+show 10.0
 show a
 show b
+show (1.0+1.0)
 BNS

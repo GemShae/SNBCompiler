@@ -3,14 +3,15 @@ package expression.model.mutable;
 import expression.Expression;
 
 public class FloatNumber extends Expression {
-    public Float floatNumber;
+    public float floatNumber;
 
-    public FloatNumber(Float floatNumber) {
+    public FloatNumber(float floatNumber) {
         this.floatNumber = floatNumber;
     }
 
     @Override
     public String toString() {
         return new FloatNumber(floatNumber).toString();
+        //return String.valueOf(new FloatNumber(floatNumber));
     }
 }
