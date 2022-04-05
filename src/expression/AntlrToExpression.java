@@ -8,6 +8,7 @@ import expression.model.statement.Assignment;
 import expression.model.statement.Print;
 import expression.model.variable.*;
 import org.antlr.v4.runtime.Token;
+import views.MainApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +66,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
         float value = Float.parseFloat(ctx.FLOAT().getText());
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting Float Declaration \n");
+        }
+
         return new FloatVariableDeclaration(dataType,floatVariable,value);
     }
 
@@ -85,6 +90,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         }
 
         String value = ctx.STRING().getText();
+
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting String Declaration \n");
+        }
 
         return new StringVariableDeclaration(dataType,stringVariable,value);
     }
@@ -134,6 +143,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
     @Override
     public Expression visitStatement(SNBParser.StatementContext ctx) {
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting a Statement \n");
+        }
+
         return super.visitStatement(ctx);
     }
 
@@ -151,6 +164,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
             }
         }
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting Print Statement \n");
+        }
+
         return new Print(command,toPrint);
     }
 
@@ -159,6 +176,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         Expression leftChild = visit(ctx.getChild(0)); //Recursively visit the left subtree of the current multiplication expression node
         Expression rightChild = visit(ctx.getChild(2));
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting multiplication statement \n");
+        }
+
         return new Multiplication(leftChild,rightChild);
     }
 
@@ -166,6 +187,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
     public Expression visitAddition(SNBParser.AdditionContext ctx) {
         Expression leftChild = visit(ctx.getChild(0));
         Expression rightChild = visit(ctx.getChild(2));
+
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting addition statement \n");
+        }
 
         return new Addition(leftChild,rightChild);
     }
@@ -185,6 +210,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
                     columnNumber + ")");
         }
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting a Variable \n");
+        }
+
         return new VariableName(variable);
     }
 
@@ -194,11 +223,20 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
         Double power = Double.parseDouble(ctx.FLOAT().getText());
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting an exponential statement \n");
+        }
+
         return new Exponential(leftChild,power);
     }
 
     @Override
     public Expression visitString(SNBParser.StringContext ctx) {
+
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting a string \n");
+        }
+
         return new StringMutable(ctx.STRING().getText());
     }
 
@@ -219,12 +257,20 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
         Expression toAssign = visit(ctx.getChild(3));
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting an assignment statement \n");
+        }
+
         return new Assignment(variable,toAssign);
     }
 
     @Override
     public Expression visitBracketExpression(SNBParser.BracketExpressionContext ctx) {
         Expression middle = visit(ctx.getChild(1));
+
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting a bracket expression statement \n");
+        }
 
         return new Bracket(middle);
     }
@@ -238,6 +284,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
 
     @Override
     public Expression visitFloat(SNBParser.FloatContext ctx) {
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting a float \n");
+        }
+
         return new FloatNumber(Float.parseFloat(ctx.FLOAT().getText()));
     }
 
@@ -246,6 +296,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
         Expression leftChild = visit(ctx.getChild(0));
         Expression rightChild = visit(ctx.getChild(2));
 
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting subtraction statement \n");
+        }
+
         return new Subtraction(leftChild,rightChild);
     }
 
@@ -253,6 +307,10 @@ public class AntlrToExpression extends SNBBaseVisitor<Expression> {
     public Expression visitDivision(SNBParser.DivisionContext ctx) {
         Expression leftChild = visit(ctx.getChild(0));
         Expression rightChild = visit(ctx.getChild(2));
+
+        if (MainApplication.debugCalled) {
+            MainApplication.debugResultsTextArea.append("Visiting division statement \n");
+        }
 
         return new Division(leftChild,rightChild);
     }

@@ -9,6 +9,7 @@ import expression.model.statement.Assignment;
 import expression.model.statement.Print;
 import expression.model.variable.FloatVariableDeclaration;
 import expression.model.variable.StringVariableDeclaration;
+import views.MainApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,18 @@ public class ExpressionProcessor {
             }
             else */
             if (expression instanceof FloatVariableDeclaration floatVariableDeclaration) {
+                if (MainApplication.debugCalled) {
+                    MainApplication.debugResultsTextArea.append("Checking instance of Float Variable Declaration \n");
+                }
+
                 variableSymbols.add(new SymbolTable(floatVariableDeclaration.variableName, floatVariableDeclaration.dataType,
                         String.valueOf(floatVariableDeclaration.value)));
             }
             else if (expression instanceof StringVariableDeclaration stringVariableDeclaration) {
+
+                if (MainApplication.debugCalled) {
+                    MainApplication.debugResultsTextArea.append("Checking instance of String Variable Declaration \n");
+                }
                 variableSymbols.add(new SymbolTable(stringVariableDeclaration.variableName, stringVariableDeclaration.dataType,
                         stringVariableDeclaration.value));
             }/*
@@ -49,6 +58,9 @@ public class ExpressionProcessor {
                         String.valueOf(booleanVariableDeclaration.value)));
             }*/
             else if (expression instanceof Assignment assignment) {
+                if (MainApplication.debugCalled) {
+                    MainApplication.debugResultsTextArea.append("Checking instance of Variable Assignment \n");
+                }
 
                 String variableName = assignment.variableName;
 
@@ -59,6 +71,10 @@ public class ExpressionProcessor {
                 }
             }
             else if (expression instanceof Print toPrint) {
+
+                if (MainApplication.debugCalled) {
+                    MainApplication.debugResultsTextArea.append("Checking instance of Print Statement \n");
+                }
 
                 StringBuilder allTheStuffToPrint = new StringBuilder();
                 List<Expression> printExpression = toPrint.thingsToPrint;
@@ -86,14 +102,23 @@ public class ExpressionProcessor {
         String result = " ";
 
         if (expression instanceof FloatNumber floatNumber) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of a float number \n");
+            }
             result = String.valueOf(floatNumber.floatNumber);
         }
         else if (expression instanceof StringMutable stringMutable) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of a string value \n");
+            }
             String tempString = stringMutable.aString;
             //System.out.println(newString);
             result = tempString.substring(1,tempString.length()-1);
         }
         else if (expression instanceof VariableName variableName) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Variable name \n");
+            }
             //result = variableSymbols.get(variableName.variableName);
             for (SymbolTable symbolTableVariable : variableSymbols) {
                 if (symbolTableVariable.variableNames.equals(variableName.variableName)) {
@@ -108,6 +133,10 @@ public class ExpressionProcessor {
             }
         }
         else if (expression instanceof Addition add) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Addition \n");
+            }
+
             String left = getEvaluationResultChild(add.left);
             String right = getEvaluationResultChild(add.right);
 
@@ -126,6 +155,10 @@ public class ExpressionProcessor {
             }
         }
         else if (expression instanceof Subtraction subtract) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Subtraction \n");
+            }
+
             String left = getEvaluationResultChild(subtract.left);
             String right = getEvaluationResultChild(subtract.right);
 
@@ -144,6 +177,10 @@ public class ExpressionProcessor {
             }
         }
         else if (expression instanceof Multiplication multiply) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Multiplication \n");
+            }
+
             String left = getEvaluationResultChild(multiply.left);
             String right = getEvaluationResultChild(multiply.right);
 
@@ -162,6 +199,10 @@ public class ExpressionProcessor {
             }
         }
         else if (expression instanceof Division divide) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Division \n");
+            }
+
             String left = getEvaluationResultChild(divide.left);
             String right = getEvaluationResultChild(divide.right);
 
@@ -180,10 +221,17 @@ public class ExpressionProcessor {
             }
         }
         else if (expression instanceof Bracket bracket) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Bracketed Expression \n");
+            }
 
             result = getEvaluationResultChild(bracket.middle);
         }
         else if (expression instanceof Exponential exponential) {
+            if (MainApplication.debugCalled) {
+                MainApplication.debugResultsTextArea.append("Checking instance of Exponential \n");
+            }
+
             String left = getEvaluationResultChild(exponential.left);
 
             if (checkFloat(left)) {

@@ -17,9 +17,6 @@ import output.OutputResult;
 import views.MainApplication;
 
 
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;

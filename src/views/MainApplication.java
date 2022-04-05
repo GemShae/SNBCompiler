@@ -95,6 +95,7 @@ public class MainApplication extends JFrame{
 
     public static Mp3 soundEffects = new Mp3();
     public static boolean debugCalled = false;
+    public static ImageIcon gem = new ImageIcon("gif/gem_gif.gif");
 
     public MainApplication(String title) {
         initialiseComponents();
@@ -104,7 +105,7 @@ public class MainApplication extends JFrame{
         //registerKeyListeners();
 
         JOptionPane.showMessageDialog(this,"Welcome to SNB Compiler","Welcome!",
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE,gem);
 
         getProjectAndFileNames();
 
@@ -539,7 +540,7 @@ public class MainApplication extends JFrame{
         });
 
         newMenuItem.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null,"Creating...","New Project",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Creating...","New Project",JOptionPane.INFORMATION_MESSAGE,gem);
             this.dispose();
             new MainApplication("SNB Compiler").setVisible(true);
         });
@@ -632,7 +633,7 @@ public class MainApplication extends JFrame{
             @Override
             public void windowClosing(WindowEvent e) {
                 int option = JOptionPane.showConfirmDialog(null,"Are you sure you want to close compiler?",
-                        "Close",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                        "Close",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE,gem);
 
                 if (option == JOptionPane.YES_OPTION) {
                     try {
@@ -640,7 +641,7 @@ public class MainApplication extends JFrame{
                     }catch (JavaLayerException javaLayerException) {
                         javaLayerException.printStackTrace();
                     }
-                    JOptionPane.showMessageDialog(null,"Closing...");
+                    JOptionPane.showMessageDialog(null,"Closing...","Close",JOptionPane.INFORMATION_MESSAGE,gem);
                     e.getWindow().dispose();
                 }
             }
